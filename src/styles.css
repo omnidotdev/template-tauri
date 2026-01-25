@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --titlebar-height: 32px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Custom titlebar styles */
+.titlebar {
+  height: var(--titlebar-height);
+  background: #18181b; /* zinc-900 */
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.titlebar-drag {
+  flex: 1;
+  height: 100%;
+}
+
+.titlebar-controls {
+  display: flex;
+  height: 100%;
+}
+
+.titlebar-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: #a1a1aa; /* zinc-400 */
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.titlebar-button:hover {
+  background: #27272a; /* zinc-800 */
+  color: #f4f4f5; /* zinc-100 */
+}
+
+.titlebar-button.close:hover {
+  background: #dc2626; /* red-600 */
+  color: white;
+}
+
+/* Main content area accounting for titlebar */
+.main-content {
+  margin-top: var(--titlebar-height);
+  min-height: calc(100vh - var(--titlebar-height));
+}

@@ -1,0 +1,22 @@
+node_modules
+dist
+target
+
+# Environment
+*.env*
+!.env
+!.env.development
+!.env.production
+!.env.test
+!.env.local.template
+
+# IDE
+.idea
+.vscode
+*.swp
+
+# TanStack Router
+src/routeTree.gen.ts
+
+# Tauri
+src-tauri/gen
