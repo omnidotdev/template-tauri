@@ -1,6 +1,6 @@
-# ♉ {{project-name}}
+# ♉ Tauri Template
 
-{{description}}
+Cross-platform desktop and mobile application built with [Tauri](https://tauri.app).
 
 ## Features
 
