@@ -26,11 +26,10 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1",
     "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-opener": "^2",
     "@tauri-apps/plugin-process": "^2",
     "@tauri-apps/plugin-updater": "^2",
-    "@tanstack/react-router": "^1",
     "lucide-react": "^0.469",
     "react": "^19",
     "react-dom": "^19",
@@ -41,7 +40,7 @@
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
     "@tailwindcss/vite": "^4",
-    "@tanstack/react-router-devtools": "^1",
+    "@tanstack/router-plugin": "^1.167.2",
     "@tauri-apps/cli": "^2",
     "@types/bun": "^1",
     "@types/react": "^19",

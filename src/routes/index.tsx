@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import useTauri from "@/hooks/useTauri";
 import useUpdater from "@/hooks/useUpdater";
 
+/** @knipignore */
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
@@ -74,7 +75,7 @@ function HomePage() {
           )}
 
           {tauriError && (
-            <p className="rounded bg-red-900/50 p-3 text-sm text-red-300">
+            <p className="rounded bg-red-900/50 p-3 text-red-300 text-sm">
               {tauriError}
             </p>
           )}
@@ -99,42 +100,42 @@ function HomePage() {
         <div className="space-y-4 rounded-lg bg-zinc-900 p-6">
           <h2 className="font-semibold text-lg">Updates</h2>
           <div className="space-y-2">
-          <div className="flex items-center gap-4">
-            <span className="text-sm text-zinc-400">Status: {status}</span>
-            {status === "idle" && (
-              <button
-                type="button"
-                onClick={checkForUpdates}
-                className="rounded bg-zinc-700 px-3 py-1.5 text-sm hover:bg-zinc-600"
-              >
-                Check for Updates
-              </button>
-            )}
-            {status === "available" && (
-              <button
-                type="button"
-                onClick={downloadAndInstall}
-                className="rounded bg-green-600 px-3 py-1.5 text-sm hover:bg-green-500"
-              >
-                Download & Install
-              </button>
-            )}
-            {status === "ready" && (
-              <button
-                type="button"
-                onClick={restart}
-                className="rounded bg-blue-600 px-3 py-1.5 text-sm hover:bg-blue-500"
-              >
-                Restart
-              </button>
-            )}
-          </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-zinc-400">Status: {status}</span>
+              {status === "idle" && (
+                <button
+                  type="button"
+                  onClick={checkForUpdates}
+                  className="rounded bg-zinc-700 px-3 py-1.5 text-sm hover:bg-zinc-600"
+                >
+                  Check for Updates
+                </button>
+              )}
+              {status === "available" && (
+                <button
+                  type="button"
+                  onClick={downloadAndInstall}
+                  className="rounded bg-green-600 px-3 py-1.5 text-sm hover:bg-green-500"
+                >
+                  Download & Install
+                </button>
+              )}
+              {status === "ready" && (
+                <button
+                  type="button"
+                  onClick={restart}
+                  className="rounded bg-blue-600 px-3 py-1.5 text-sm hover:bg-blue-500"
+                >
+                  Restart
+                </button>
+              )}
+            </div>
 
-          {updateError && (
-            <p className="rounded bg-red-900/50 p-3 text-sm text-red-300">
-              {updateError}
-            </p>
-          )}
+            {updateError && (
+              <p className="rounded bg-red-900/50 p-3 text-red-300 text-sm">
+                {updateError}
+              </p>
+            )}
           </div>
         </div>
       </div>

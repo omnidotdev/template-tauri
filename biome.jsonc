@@ -31,7 +31,8 @@
     }
   },
   "files": {
-    "includes": ["**", "!!**/src-tauri/**"]
+    "includes": ["**", "!!**/src-tauri", "!!index.html"],
+    "ignoreUnknown": true
   },
   "formatter": {
     "indentStyle": "space",
