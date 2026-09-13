@@ -1,7 +1,7 @@
 use tauri::{
+    Manager,
     menu::{Menu, MenuItem},
     tray::TrayIconBuilder,
-    Manager,
 };
 
 /// Greet command - example IPC from frontend to backend.
@@ -29,7 +29,7 @@ fn setup_tray(app: &tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     TrayIconBuilder::new()
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
-        .menu_on_left_click(false)
+        .show_menu_on_left_click(false)
         .on_menu_event(|app, event| match event.id.as_ref() {
             "show" => {
                 if let Some(window) = app.get_webview_window("main") {
@@ -47,12 +47,30 @@ fn setup_tray(app: &tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
+/// Build and run the Tauri application.
+///
+/// # Panics
+///
+/// Panics if the application fails to build or run, for example on an invalid
+/// configuration or a missing default window icon.
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_deep_link::init())
+        .plugin(tauri_plugin_geolocation::init())
+        .plugin(tauri_plugin_notification::init())
         .setup(|app| {
+            // Log to stdout in debug builds, useful on mobile where no console is attached
+            if cfg!(debug_assertions) {
+                app.handle().plugin(
+                    tauri_plugin_log::Builder::default()
+                        .level(log::LevelFilter::Info)
+                        .build(),
+                )?;
+            }
+
             // Setup updater on desktop only
             #[cfg(desktop)]
             {

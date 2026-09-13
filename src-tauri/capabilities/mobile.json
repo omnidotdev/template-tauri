@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.tauri.app/config/2/capability",
+  "identifier": "mobile-capabilities",
+  "description": "Permissions for mobile features",
+  "windows": ["main"],
+  "platforms": ["iOS", "android"],
+  "permissions": [
+    "core:default",
+    "geolocation:default",
+    "geolocation:allow-check-permissions",
+    "geolocation:allow-request-permissions",
+    "geolocation:allow-get-current-position",
+    "geolocation:allow-watch-position",
+    "notification:default",
+    "notification:allow-is-permission-granted",
+    "notification:allow-request-permission",
+    "notification:allow-notify",
+    "opener:default",
+    "opener:allow-default-urls",
+    "deep-link:default"
+  ]
+}

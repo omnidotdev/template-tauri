@@ -2,6 +2,8 @@ import { relaunch } from "@tauri-apps/plugin-process";
 import { check } from "@tauri-apps/plugin-updater";
 import { useCallback, useState } from "react";
 
+import { isTauri } from "../lib/tauri";
+
 type UpdateStatus = "idle" | "checking" | "available" | "downloading" | "ready";
 
 /**
@@ -13,6 +15,10 @@ function useUpdater() {
   const [error, setError] = useState<string | null>(null);
 
   const checkForUpdates = useCallback(async () => {
+    // The updater only exists inside the native shell; on the plain web
+    // check() has nothing to talk to, so no-op there
+    if (!isTauri()) return null;
+
     setStatus("checking");
     setError(null);
 
@@ -35,6 +41,8 @@ function useUpdater() {
   }, []);
 
   const downloadAndInstall = useCallback(async () => {
+    if (!isTauri()) return;
+
     setStatus("checking");
     setError(null);
 

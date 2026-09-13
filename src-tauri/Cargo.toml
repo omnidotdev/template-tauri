@@ -19,11 +19,21 @@ tauri-build = { version = "2", features = [] }
 tauri = { version = "2", features = ["tray-icon"] }
 tauri-plugin-opener = "2"
 tauri-plugin-process = "2"
+# Mobile plugins (also usable on desktop, registered unconditionally in lib.rs)
+tauri-plugin-deep-link = "2"
+tauri-plugin-geolocation = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-log = "2"
+log = "0.4"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 thiserror = "2"
 
-[target.'cfg(desktop)'.dependencies]
+# cfg(desktop) is a compile-time cfg Tauri sets in build.rs; Cargo's dependency
+# resolver does not understand it, so a [target.'cfg(desktop)'] section never
+# activates and the updater would never be pulled in. Gate on the built-in
+# target_os cfgs the resolver does understand instead.
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-updater = "2"
 
 [profile.release]
