@@ -14,7 +14,8 @@
   "keywords": [],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "routes:generate": "tsr generate",
+    "build": "tsr generate && tsc && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:ios:init": "tauri ios init",
@@ -53,6 +54,7 @@
     "@tanstack/devtools-vite": "^0.6.0",
     "@tanstack/react-devtools": "^0.10.0",
     "@tanstack/react-router-devtools": "^1.166.11",
+    "@tanstack/router-cli": "^1.167.36",
     "@tanstack/router-plugin": "^1.167.2",
     "@tauri-apps/cli": "^2",
     "@types/bun": "^1",
