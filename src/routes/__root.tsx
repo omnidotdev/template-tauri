@@ -18,15 +18,17 @@ function RootComponent() {
         <Outlet />
       </main>
 
-      <TanStackDevtools
-        plugins={[
-          {
-            name: "Router",
-            render: <TanStackRouterDevtoolsPanel />,
-            defaultOpen: true,
-          },
-        ]}
-      />
+      {import.meta.env.DEV && (
+        <TanStackDevtools
+          plugins={[
+            {
+              name: "Router",
+              render: <TanStackRouterDevtoolsPanel />,
+              defaultOpen: true,
+            },
+          ]}
+        />
+      )}
     </>
   );
 }
