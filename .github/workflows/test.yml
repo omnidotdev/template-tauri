@@ -46,19 +46,28 @@ jobs:
       - name: TypeScript
         run: bun tsc --noEmit
 
-      # This is a cargo-generate template: src-tauri carries {{project-name}}
-      # placeholders (an invalid Cargo package name) and ships an empty icons
-      # directory. Substitute a throwaway name and generate icons so the Rust
-      # toolchain can actually build the crate.
+      # A raw template checkout carries {{project-name}} placeholders (an invalid
+      # Cargo package name) and ships no icons, so CI substitutes a throwaway name
+      # and generates icons to build the crate. Both halves are guarded so a
+      # generated project, which has a real valid name and real icons, skips them:
+      # the rename runs only while placeholders remain, so it never rewrites a real
+      # crate name once the name has been filled in (a global name replace that
+      # also touches this workflow would otherwise turn the sed into
+      # s/<realname>/test_app/g and corrupt the manifest), and icons are generated
+      # only when absent.
       - name: Scaffold template for native build
         run: |
-          sed -i \
-            -e 's/{{project-name-snake}}/test_app/g' \
-            -e 's/{{project-name}}/test-app/g' \
-            -e 's/{{description}}/Test app/g' \
-            src-tauri/Cargo.toml src-tauri/src/main.rs src-tauri/src/lib.rs src-tauri/tauri.conf.json
-          convert -size 1024x1024 xc:'#4f46e5' "$RUNNER_TEMP/icon-source.png"
-          bunx @tauri-apps/cli icon "$RUNNER_TEMP/icon-source.png" -o src-tauri/icons
+          if grep -q '{{' src-tauri/Cargo.toml; then
+            sed -i \
+              -e 's/{{project-name-snake}}/test_app/g' \
+              -e 's/{{project-name}}/test-app/g' \
+              -e 's/{{description}}/Test app/g' \
+              src-tauri/Cargo.toml src-tauri/src/main.rs src-tauri/src/lib.rs src-tauri/tauri.conf.json
+          fi
+          if [ ! -f src-tauri/icons/icon.ico ]; then
+            convert -size 1024x1024 xc:'#4f46e5' "$RUNNER_TEMP/icon-source.png"
+            bunx @tauri-apps/cli icon "$RUNNER_TEMP/icon-source.png" -o src-tauri/icons
+          fi
 
       - name: Clippy
         run: cargo clippy --manifest-path src-tauri/Cargo.toml -- -D warnings
