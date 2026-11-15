@@ -13,6 +13,7 @@
   "author": "Omni <team@omni.dev>",
   "keywords": [],
   "scripts": {
+    "release": "changeset publish",
     "dev": "vite",
     "routes:generate": "tsr generate",
     "build": "tsr generate && tsc && vite build",
