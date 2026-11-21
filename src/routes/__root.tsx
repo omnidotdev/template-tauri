@@ -4,6 +4,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import LandscapeGate from "@/components/LandscapeGate";
 import Titlebar from "@/components/Titlebar";
+import { isTauri } from "@/lib/tauri";
 
 /** @knipignore */
 export const Route = createRootRoute({
@@ -15,9 +16,11 @@ function RootComponent() {
     <>
       <LandscapeGate />
 
-      <Titlebar />
+      {/* The custom titlebar drives the native window, which only exists in
+          the desktop shell */}
+      {isTauri() && <Titlebar />}
 
-      <main className="main-content">
+      <main className={isTauri() ? "main-content" : "min-h-screen"}>
         <Outlet />
       </main>
 
