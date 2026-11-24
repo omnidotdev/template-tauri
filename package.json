@@ -42,7 +42,7 @@
     "@tauri-apps/plugin-opener": "~2.5",
     "@tauri-apps/plugin-process": "~2.3",
     "@tauri-apps/plugin-updater": "~2.12",
-    "lucide-react": "^0.469",
+    "lucide-react": "^0.577.0",
     "react": "^19",
     "react-dom": "^19",
     "tailwindcss": "^4"
@@ -52,7 +52,7 @@
     "@changesets/changelog-github": "^1.0.0",
     "@changesets/cli": "^3.0.1",
     "@tailwindcss/vite": "^4",
-    "@tanstack/devtools-vite": "^0.6.0",
+    "@tanstack/devtools-vite": "^0.8.0",
     "@tanstack/react-devtools": "^0.10.0",
     "@tanstack/react-router-devtools": "^1.166.11",
     "@tanstack/router-cli": "^1.167.36",
