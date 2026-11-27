@@ -42,7 +42,7 @@
     "@tauri-apps/plugin-opener": "~2.5",
     "@tauri-apps/plugin-process": "~2.3",
     "@tauri-apps/plugin-updater": "~2.12",
-    "lucide-react": "^0.469",
+    "lucide-react": "^1.0.0",
     "react": "^19",
     "react-dom": "^19",
     "tailwindcss": "^4"
@@ -61,10 +61,10 @@
     "@types/bun": "^1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitejs/plugin-react": "^4",
+    "@vitejs/plugin-react": "^6.0.0",
     "husky": "^9.1.7",
-    "knip": "^5",
-    "typescript": "^5",
-    "vite": "^6"
+    "knip": "^6.0.0",
+    "typescript": "^7.0.0",
+    "vite": "^8.0.0"
   }
 }
